@@ -274,6 +274,7 @@ CREATE TABLE public.order_status (
     value text NOT NULL,
     description text NOT NULL
 );
+INSERT INTO order_status(value,description) values("completed","the order is  already completed");
 CREATE TABLE public.physical_product_category (
     id integer NOT NULL,
     name character varying NOT NULL
