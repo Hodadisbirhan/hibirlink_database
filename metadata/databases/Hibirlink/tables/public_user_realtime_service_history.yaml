@@ -1,0 +1,3 @@
+table:
+  name: user_realtime_service_history
+  schema: public

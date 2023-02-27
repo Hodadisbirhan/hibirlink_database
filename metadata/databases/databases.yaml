@@ -1,0 +1,10 @@
+- name: Hibirlink
+  kind: postgres
+  configuration:
+    connection_info:
+      database_url:
+        from_env: PG_DATABASE_URL
+      isolation_level: read-committed
+      use_prepared_statements: false
+  tables: "!include Hibirlink/tables/tables.yaml"
+  functions: "!include Hibirlink/functions/functions.yaml"

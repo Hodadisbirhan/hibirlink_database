@@ -1,0 +1,47 @@
+table:
+  name: supplier_address
+  schema: public
+object_relationships:
+  - name: supplier
+    using:
+      foreign_key_constraint_on: supplierID
+insert_permissions:
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - regionOrCity
+        - subCity
+        - supplierID
+        - id
+        - description
+select_permissions:
+  - role: customer
+    permission:
+      columns:
+        - regionOrCity
+        - subCity
+        - supplierID
+        - id
+        - description
+      filter: {}
+  - role: supplier
+    permission:
+      columns:
+        - regionOrCity
+        - subCity
+        - supplierID
+        - id
+        - description
+      filter: {}
+update_permissions:
+  - role: supplier
+    permission:
+      columns:
+        - regionOrCity
+        - subCity
+        - supplierID
+        - id
+        - description
+      filter: {}
+      check: {}

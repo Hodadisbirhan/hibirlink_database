@@ -1,0 +1,5 @@
+function:
+  name: insert_service_discount_function
+  schema: public
+permissions:
+  - role: anonymous

@@ -1,0 +1,76 @@
+type Mutation {
+  login(
+    credentials: SampleInput!
+  ): SampleOutput
+}
+
+type Mutation {
+  updateCustomerProfile(
+    credentials: CustomerProfileInput!
+  ): CustomerProfileOutput
+}
+
+type Mutation {
+  updatePassword(
+    credentials: Input!
+  ): Output
+}
+
+input SampleInput {
+  id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  id_token: String!
+}
+
+input Credentail {
+  id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+input SupplierInput {
+  id: String!
+  storeName: String
+  phoneNumber: String!
+  accountNumber: String!
+  tinNumber: String
+  socialMedia: String
+}
+
+input CustomerProfileInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  id_token: String!
+}
+
+input Input {
+  newPassword: String!
+  id_token: String!
+}
+
+type SampleOutput {
+  success: Boolean!
+  message: String
+}
+
+type Output {
+  success: Boolean!
+  message: String!
+}
+
+type SupplierOutput {
+  accessToken: String!
+}
+
+type CustomerProfileOutput {
+  success: Boolean!
+  message: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+

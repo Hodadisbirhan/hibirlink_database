@@ -1,0 +1,72 @@
+table:
+  name: realtime_service_address
+  schema: public
+object_relationships:
+  - name: realtime_service
+    using:
+      foreign_key_constraint_on: serviceID
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - phoneNumber
+        - region_city
+        - subcity
+        - id
+        - serviceID
+        - description
+        - socialMedia
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - id
+        - serviceID
+        - phoneNumber
+        - socialMedia
+        - region_city
+        - subcity
+        - description
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - phoneNumber
+        - region_city
+        - subcity
+        - id
+        - serviceID
+        - description
+        - socialMedia
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - phoneNumber
+        - region_city
+        - subcity
+        - id
+        - serviceID
+        - description
+        - socialMedia
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - phoneNumber
+        - region_city
+        - subcity
+        - id
+        - serviceID
+        - description
+        - socialMedia
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

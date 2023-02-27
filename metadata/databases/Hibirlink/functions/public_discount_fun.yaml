@@ -1,0 +1,5 @@
+function:
+  name: discount_fun
+  schema: public
+permissions:
+  - role: anonymous

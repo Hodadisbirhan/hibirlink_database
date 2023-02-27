@@ -1,0 +1,128 @@
+table:
+  name: users
+  schema: public
+object_relationships:
+  - name: roleByRole
+    using:
+      foreign_key_constraint_on: role
+  - name: supplier
+    using:
+      foreign_key_constraint_on:
+        column: id
+        table:
+          name: supplier
+          schema: public
+array_relationships:
+  - name: digital_product_rates
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: digital_product_rate
+          schema: public
+  - name: physical_product_rates
+    using:
+      foreign_key_constraint_on:
+        column: user_Id
+        table:
+          name: physical_product_rate
+          schema: public
+  - name: product_orders
+    using:
+      foreign_key_constraint_on:
+        column: customerID
+        table:
+          name: product_order
+          schema: public
+  - name: realtime_service_rates
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: realtime_service_rate
+          schema: public
+  - name: realtime_services
+    using:
+      foreign_key_constraint_on:
+        column: service_owner
+        table:
+          name: realtime_service
+          schema: public
+  - name: shopping_carts
+    using:
+      foreign_key_constraint_on:
+        column: userID
+        table:
+          name: shopping_cart
+          schema: public
+  - name: supplier_varified_bies
+    using:
+      foreign_key_constraint_on:
+        column: userID
+        table:
+          name: supplier_varified_by
+          schema: public
+  - name: virtual_service_rates
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: virtual_service_rate
+          schema: public
+  - name: virtual_services
+    using:
+      foreign_key_constraint_on:
+        column: service_owner
+        table:
+          name: virtual_service
+          schema: public
+computed_fields:
+  - name: total_realtime_service
+    definition:
+      function:
+        name: total_realtime_service
+        schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - email
+        - firstName
+        - id
+        - lastName
+        - role
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - email
+        - firstName
+        - id
+        - lastName
+        - role
+        - created_at
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - email
+        - firstName
+        - id
+        - lastName
+        - role
+      computed_fields:
+        - total_realtime_service
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - email
+        - firstName
+        - id
+        - lastName
+        - role
+        - created_at
+      filter: {}
+      allow_aggregations: true

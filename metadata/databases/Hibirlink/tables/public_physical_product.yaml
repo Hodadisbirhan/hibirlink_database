@@ -1,0 +1,100 @@
+table:
+  name: physical_product
+  schema: public
+object_relationships:
+  - name: discount
+    using:
+      foreign_key_constraint_on: discount_id
+  - name: physical_product_category
+    using:
+      foreign_key_constraint_on: category_id
+  - name: physical_product_subcategory
+    using:
+      foreign_key_constraint_on: sub_category_id
+  - name: product_status
+    using:
+      foreign_key_constraint_on: status
+  - name: supplier
+    using:
+      foreign_key_constraint_on: supplier_id
+array_relationships:
+  - name: order_details
+    using:
+      foreign_key_constraint_on:
+        column: productID
+        table:
+          name: order_detail
+          schema: public
+  - name: physical_product_images
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: physical_product_image
+          schema: public
+  - name: physical_product_rates
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: physical_product_rate
+          schema: public
+  - name: product_address
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: product_address
+          schema: public
+  - name: shopping_carts
+    using:
+      foreign_key_constraint_on:
+        column: productID
+        table:
+          name: shopping_cart
+          schema: public
+computed_fields:
+  - name: average_rate
+    definition:
+      function:
+        name: average_pproduct_rate
+        schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - amount
+        - category_id
+        - cover_image
+        - created_at
+        - description
+        - discount_id
+        - id
+        - status
+        - sub_category_id
+        - supplier_id
+        - title
+        - unit_price
+        - updated_at
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - amount
+        - category_id
+        - cover_image
+        - created_at
+        - description
+        - discount_id
+        - id
+        - status
+        - sub_category_id
+        - supplier_id
+        - title
+        - unit_price
+        - updated_at
+      computed_fields:
+        - average_rate
+      filter: {}
+      allow_aggregations: true

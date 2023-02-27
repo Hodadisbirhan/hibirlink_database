@@ -1,0 +1,12 @@
+table:
+  name: order_status
+  schema: public
+is_enum: true
+array_relationships:
+  - name: product_orders
+    using:
+      foreign_key_constraint_on:
+        column: status
+        table:
+          name: product_order
+          schema: public

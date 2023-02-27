@@ -1,0 +1,28 @@
+table:
+  name: product_address
+  schema: public
+object_relationships:
+  - name: physical_product
+    using:
+      foreign_key_constraint_on: product_id
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - id
+        - city
+        - sub_city
+        - description
+        - product_id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - city
+        - sub_city
+        - id
+        - product_id
+        - description
+      filter: {}
+      allow_aggregations: true

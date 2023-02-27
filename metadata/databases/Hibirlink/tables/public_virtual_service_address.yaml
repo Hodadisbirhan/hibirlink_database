@@ -1,0 +1,43 @@
+table:
+  name: virtual_service_address
+  schema: public
+object_relationships:
+  - name: virtual_service
+    using:
+      foreign_key_constraint_on: service_id
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - phone_number
+        - id
+        - service_id
+        - description
+        - social_media
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - phone_number
+        - id
+        - service_id
+        - description
+        - social_media
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - phone_number
+        - id
+        - service_id
+        - description
+        - social_media
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

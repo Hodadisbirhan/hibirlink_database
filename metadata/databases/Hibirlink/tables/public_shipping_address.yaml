@@ -1,0 +1,7 @@
+table:
+  name: shipping_address
+  schema: public
+object_relationships:
+  - name: product_order
+    using:
+      foreign_key_constraint_on: orderID

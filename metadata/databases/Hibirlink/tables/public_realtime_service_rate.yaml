@@ -1,0 +1,51 @@
+table:
+  name: realtime_service_rate
+  schema: public
+object_relationships:
+  - name: realtime_service
+    using:
+      foreign_key_constraint_on: service_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - user_id
+        - rate
+        - service_id
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - user_id
+        - rate
+        - service_id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - user_id
+        - rate
+        - service_id
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - user_id
+        - rate
+        - service_id
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - user_id
+        - rate
+        - service_id
+      filter: {}
+      check: {}

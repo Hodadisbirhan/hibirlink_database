@@ -1,0 +1,55 @@
+table:
+  name: realtime_service_image
+  schema: public
+object_relationships:
+  - name: realtime_service
+    using:
+      foreign_key_constraint_on: serviceID
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - id
+        - serviceID
+        - imageURL
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - id
+        - serviceID
+        - imageURL
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - serviceID
+        - imageURL
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - id
+        - serviceID
+        - imageURL
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - serviceID
+        - imageURL
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}
+  - role: customer
+    permission:
+      filter: {}

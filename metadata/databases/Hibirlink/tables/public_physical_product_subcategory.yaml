@@ -1,0 +1,32 @@
+table:
+  name: physical_product_subcategory
+  schema: public
+object_relationships:
+  - name: physical_product_category
+    using:
+      foreign_key_constraint_on: category_id
+array_relationships:
+  - name: physical_products
+    using:
+      foreign_key_constraint_on:
+        column: sub_category_id
+        table:
+          name: physical_product
+          schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - name
+        - category_id
+        - id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - name
+        - category_id
+        - id
+      filter: {}
+      allow_aggregations: true

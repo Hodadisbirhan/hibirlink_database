@@ -1,0 +1,146 @@
+table:
+  name: realtime_service
+  schema: public
+object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: accountID
+  - name: realtime_service_category
+    using:
+      foreign_key_constraint_on: category_id
+  - name: service_discount
+    using:
+      foreign_key_constraint_on: discount_id
+  - name: user
+    using:
+      foreign_key_constraint_on: service_owner
+array_relationships:
+  - name: realtime_service_addresses
+    using:
+      foreign_key_constraint_on:
+        column: serviceID
+        table:
+          name: realtime_service_address
+          schema: public
+  - name: realtime_service_images
+    using:
+      foreign_key_constraint_on:
+        column: serviceID
+        table:
+          name: realtime_service_image
+          schema: public
+  - name: realtime_service_rates
+    using:
+      foreign_key_constraint_on:
+        column: service_id
+        table:
+          name: realtime_service_rate
+          schema: public
+computed_fields:
+  - name: average_rate
+    definition:
+      function:
+        name: average_rate
+        schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - isVerified
+        - service_owner
+        - tinNumber
+        - title
+        - accountID
+        - category_id
+        - discount_id
+        - id
+        - avaliability
+        - description
+        - licence
+        - logo
+        - created_at
+        - updated_at
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - isVerified
+        - service_owner
+        - tinNumber
+        - title
+        - accountID
+        - category_id
+        - discount_id
+        - id
+        - avaliability
+        - description
+        - licence
+        - logo
+        - created_at
+        - updated_at
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - isVerified
+        - service_owner
+        - tinNumber
+        - title
+        - accountID
+        - category_id
+        - discount_id
+        - id
+        - avaliability
+        - description
+        - licence
+        - logo
+        - created_at
+        - updated_at
+      computed_fields:
+        - average_rate
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - isVerified
+        - service_owner
+        - tinNumber
+        - title
+        - accountID
+        - category_id
+        - discount_id
+        - id
+        - avaliability
+        - description
+        - licence
+        - logo
+        - created_at
+        - updated_at
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - isVerified
+        - service_owner
+        - tinNumber
+        - title
+        - accountID
+        - category_id
+        - discount_id
+        - id
+        - avaliability
+        - description
+        - licence
+        - logo
+        - created_at
+        - updated_at
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

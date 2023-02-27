@@ -1,0 +1,47 @@
+table:
+  name: supplier
+  schema: public
+object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: id
+array_relationships:
+  - name: digital_products
+    using:
+      foreign_key_constraint_on:
+        column: supplier_id
+        table:
+          name: digital_product
+          schema: public
+  - name: physical_products
+    using:
+      foreign_key_constraint_on:
+        column: supplier_id
+        table:
+          name: physical_product
+          schema: public
+  - name: supplier_addresses
+    using:
+      foreign_key_constraint_on:
+        column: supplierID
+        table:
+          name: supplier_address
+          schema: public
+  - name: supplier_varified_bies
+    using:
+      foreign_key_constraint_on:
+        column: supplierID
+        table:
+          name: supplier_varified_by
+          schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - accountNumber
+        - id
+        - phoneNumber
+        - storeName
+        - tinNumber
+        - socialMedia
+      filter: {}

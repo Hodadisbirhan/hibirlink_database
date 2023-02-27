@@ -1,0 +1,26 @@
+table:
+  name: digital_product_category
+  schema: public
+array_relationships:
+  - name: digital_products
+    using:
+      foreign_key_constraint_on:
+        column: category_id
+        table:
+          name: digital_product
+          schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - name
+        - id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - name
+        - id
+      filter: {}
+      allow_aggregations: true

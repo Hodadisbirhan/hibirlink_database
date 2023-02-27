@@ -1,0 +1,3 @@
+table:
+  name: user_physical_product_history
+  schema: public

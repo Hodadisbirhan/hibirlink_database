@@ -1,0 +1,106 @@
+table:
+  name: virtual_service
+  schema: public
+object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: account_id
+  - name: service_discount
+    using:
+      foreign_key_constraint_on: discount_id
+  - name: user
+    using:
+      foreign_key_constraint_on: service_owner
+  - name: virtual_service_category
+    using:
+      foreign_key_constraint_on: category_id
+array_relationships:
+  - name: virtual_service_addresses
+    using:
+      foreign_key_constraint_on:
+        column: service_id
+        table:
+          name: virtual_service_address
+          schema: public
+  - name: virtual_service_images
+    using:
+      foreign_key_constraint_on:
+        column: service_id
+        table:
+          name: virtual_service_image
+          schema: public
+  - name: virtual_service_rates
+    using:
+      foreign_key_constraint_on:
+        column: service_id
+        table:
+          name: virtual_service_rate
+          schema: public
+computed_fields:
+  - name: average_rate
+    definition:
+      function:
+        name: total_rate
+        schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - id
+        - title
+        - license
+        - logo
+        - category_id
+        - account_id
+        - created_at
+        - updated_at
+        - service_owner
+        - is_verified
+        - discount_id
+        - web_link
+        - description
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - is_verified
+        - service_owner
+        - title
+        - web_link
+        - account_id
+        - category_id
+        - discount_id
+        - id
+        - description
+        - license
+        - logo
+        - created_at
+        - updated_at
+      computed_fields:
+        - average_rate
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - is_verified
+        - service_owner
+        - title
+        - web_link
+        - account_id
+        - category_id
+        - discount_id
+        - id
+        - description
+        - license
+        - logo
+        - created_at
+        - updated_at
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

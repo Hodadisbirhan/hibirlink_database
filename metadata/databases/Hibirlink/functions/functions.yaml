@@ -1,0 +1,2 @@
+- "!include public_discount_fun.yaml"
+- "!include public_insert_service_discount_function.yaml"

@@ -1,0 +1,25 @@
+table:
+  name: virtual_service_category
+  schema: public
+array_relationships:
+  - name: virtual_services
+    using:
+      foreign_key_constraint_on:
+        column: category_id
+        table:
+          name: virtual_service
+          schema: public
+computed_fields:
+  - name: total_service
+    definition:
+      function:
+        name: total_service
+        schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - name
+        - id
+      filter: {}
+      allow_aggregations: true

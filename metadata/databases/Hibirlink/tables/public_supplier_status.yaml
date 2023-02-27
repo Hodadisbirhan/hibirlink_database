@@ -1,0 +1,12 @@
+table:
+  name: supplier_status
+  schema: public
+is_enum: true
+array_relationships:
+  - name: supplier_varified_bies
+    using:
+      foreign_key_constraint_on:
+        column: status
+        table:
+          name: supplier_varified_by
+          schema: public

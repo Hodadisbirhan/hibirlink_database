@@ -1,0 +1,18 @@
+table:
+  name: new_release_digital_product
+  schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - title
+        - category_id
+        - id
+        - description
+        - average_rate
+        - unit_price
+        - cover_image
+        - created_at
+        - updated_at
+      filter: {}
+      allow_aggregations: true

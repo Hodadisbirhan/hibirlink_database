@@ -1,0 +1,25 @@
+table:
+  name: product_order
+  schema: public
+object_relationships:
+  - name: order_status
+    using:
+      foreign_key_constraint_on: status
+  - name: shipping_address
+    using:
+      foreign_key_constraint_on:
+        column: orderID
+        table:
+          name: shipping_address
+          schema: public
+  - name: user
+    using:
+      foreign_key_constraint_on: customerID
+array_relationships:
+  - name: order_details
+    using:
+      foreign_key_constraint_on:
+        column: orderID
+        table:
+          name: order_detail
+          schema: public

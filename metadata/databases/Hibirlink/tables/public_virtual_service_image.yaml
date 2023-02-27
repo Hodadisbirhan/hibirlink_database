@@ -1,0 +1,37 @@
+table:
+  name: virtual_service_image
+  schema: public
+object_relationships:
+  - name: virtual_service
+    using:
+      foreign_key_constraint_on: service_id
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - id
+        - service_id
+        - image_url
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - service_id
+        - image_url
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - service_id
+        - image_url
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

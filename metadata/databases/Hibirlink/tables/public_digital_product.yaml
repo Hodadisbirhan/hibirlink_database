@@ -1,0 +1,90 @@
+table:
+  name: digital_product
+  schema: public
+object_relationships:
+  - name: digital_product_category
+    using:
+      foreign_key_constraint_on: category_id
+  - name: discount
+    using:
+      foreign_key_constraint_on: discount_id
+  - name: supplier
+    using:
+      foreign_key_constraint_on: supplier_id
+array_relationships:
+  - name: digital_product_images
+    using:
+      foreign_key_constraint_on:
+        column: productID
+        table:
+          name: digital_product_image
+          schema: public
+  - name: digital_product_rates
+    using:
+      foreign_key_constraint_on:
+        column: product_id
+        table:
+          name: digital_product_rate
+          schema: public
+computed_fields:
+  - name: average_rate
+    definition:
+      function:
+        name: average_digitalproduct_rate
+        schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - category_id
+        - cover_image
+        - created_at
+        - demoLink
+        - description
+        - discount_id
+        - id
+        - supplier_id
+        - title
+        - unit_price
+        - updated_at
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - category_id
+        - cover_image
+        - created_at
+        - demoLink
+        - description
+        - discount_id
+        - id
+        - supplier_id
+        - title
+        - unit_price
+        - updated_at
+      computed_fields:
+        - average_rate
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - category_id
+        - cover_image
+        - created_at
+        - demoLink
+        - description
+        - discount_id
+        - id
+        - supplier_id
+        - title
+        - unit_price
+        - updated_at
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

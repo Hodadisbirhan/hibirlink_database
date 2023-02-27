@@ -1,0 +1,73 @@
+table:
+  name: service_discount
+  schema: public
+array_relationships:
+  - name: realtime_services
+    using:
+      foreign_key_constraint_on:
+        column: discount_id
+        table:
+          name: realtime_service
+          schema: public
+  - name: virtual_services
+    using:
+      foreign_key_constraint_on:
+        column: discount_id
+        table:
+          name: virtual_service
+          schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - id
+        - reason
+        - rate
+        - end_date
+        - start_date
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - id
+        - rate
+        - start_date
+        - end_date
+        - reason
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - reason
+        - rate
+        - end_date
+        - start_date
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - id
+        - reason
+        - rate
+        - end_date
+        - start_date
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - reason
+        - rate
+        - end_date
+        - start_date
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

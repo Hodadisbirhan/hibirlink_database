@@ -1,0 +1,22 @@
+table:
+  name: new_release_realtime_product
+  schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - title
+        - id
+        - cover_image
+        - description
+        - category_id
+        - sub_category_id
+        - average_rate
+        - amount
+        - unit_price
+        - created_at
+        - updated_at
+        - status
+        - discount_id
+      filter: {}
+      allow_aggregations: true

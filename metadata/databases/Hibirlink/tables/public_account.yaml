@@ -1,0 +1,68 @@
+table:
+  name: account
+  schema: public
+array_relationships:
+  - name: realtime_services
+    using:
+      foreign_key_constraint_on:
+        column: accountID
+        table:
+          name: realtime_service
+          schema: public
+  - name: virtual_services
+    using:
+      foreign_key_constraint_on:
+        column: account_id
+        table:
+          name: virtual_service
+          schema: public
+insert_permissions:
+  - role: anonymous
+    permission:
+      check: {}
+      columns:
+        - accountHolder
+        - accountNumber
+        - accountType
+        - id
+  - role: customer
+    permission:
+      check: {}
+      columns:
+        - accountNumber
+        - accountType
+        - accountHolder
+        - id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - accountHolder
+        - accountNumber
+        - accountType
+        - id
+      filter: {}
+      allow_aggregations: true
+  - role: customer
+    permission:
+      columns:
+        - id
+        - accountNumber
+        - accountHolder
+        - accountType
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - accountHolder
+        - accountNumber
+        - accountType
+        - id
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: anonymous
+    permission:
+      filter: {}

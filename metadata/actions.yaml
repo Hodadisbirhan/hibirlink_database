@@ -1,0 +1,48 @@
+actions:
+  - name: login
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_WEBHOOK_BASE_URL}}login'
+      forward_client_headers: true
+      headers:
+        - name: ACTION_SECRET
+          value_from_env: ACTION_SECRET_KEY
+    permissions:
+      - role: customer
+      - role: anonymous
+  - name: updateCustomerProfile
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_WEBHOOK_BASE_URL}}updateCustomerProfile'
+      forward_client_headers: true
+      headers:
+        - name: ACTION_SECRET
+          value_from_env: ACTION_SECRET_KEY
+    permissions:
+      - role: supplier
+      - role: customer
+  - name: updatePassword
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_WEBHOOK_BASE_URL}}updatePassword'
+      forward_client_headers: true
+      headers:
+        - name: ACTION_SECRET
+          value_from_env: ACTION_SECRET_KEY
+    permissions:
+      - role: supplier
+      - role: customer
+custom_types:
+  enums: []
+  input_objects:
+    - name: SampleInput
+    - name: Credentail
+    - name: SupplierInput
+    - name: CustomerProfileInput
+    - name: Input
+  objects:
+    - name: SampleOutput
+    - name: Output
+    - name: SupplierOutput
+    - name: CustomerProfileOutput
+  scalars: []

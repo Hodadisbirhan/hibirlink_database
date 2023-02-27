@@ -1,0 +1,13 @@
+table:
+  name: supplier_varified_by
+  schema: public
+object_relationships:
+  - name: supplier
+    using:
+      foreign_key_constraint_on: supplierID
+  - name: supplier_status
+    using:
+      foreign_key_constraint_on: status
+  - name: user
+    using:
+      foreign_key_constraint_on: userID
